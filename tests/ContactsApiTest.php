@@ -43,11 +43,14 @@ class ContactsApiTest extends TestCase
             'status',
             'data' => [
                 'contact' => [
+                    'id',
                     'name',
                     'email',
                     'phone',
                     'campaign',
-                    'source'
+                    'source',
+                    'created_at',
+                    'updated_at'
                 ]
             ]
         ]);

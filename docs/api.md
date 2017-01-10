@@ -1,4 +1,4 @@
-# Central API v0.1
+# Central API v0.2
 
 ### Resources
 
@@ -37,11 +37,14 @@ POST /api/contacts
   "status": "success",
   "data": {
     "contact": {
+      "id": 42,
       "name": "DeRay",
       "email": "deray@deray.com",
       "phone": "123-456-7890",
       "campaign": "inauguration",
-      "source": "sms"
+      "source": "sms",
+      "created_at": "2017-01-10T05:43:19+0000",
+      "updated_at": "2017-01-10T05:43:19+0000"
     }
   }
 }
