@@ -29,6 +29,34 @@ class ContactsApiTest extends TestCase
     }
 
     /** @test */
+    function after_storing_contacts_they_are_returned_in_jsend_format()
+    {
+        $this->post('api/contacts', [
+            'name' => 'DeRay',
+            'email' => 'deray@deray.com',
+            'phone' => '123-456-7890',
+            'campaign' => 'inauguration',
+            'source' => 'sms'
+        ]);
+
+        $this->seeJsonStructure([
+            'status',
+            'data' => [
+                'contact' => [
+                    'name',
+                    'email',
+                    'phone',
+                    'campaign',
+                    'source'
+                ]
+            ]
+        ]);
+
+        $this->seeJson(['status' => 'success']);
+        $this->seeJson(['name' => 'DeRay']);
+    }
+
+    /** @test */
     function duplicate_contacts_are_updated_not_duplicated()
     {
         $this->markTestIncomplete();
