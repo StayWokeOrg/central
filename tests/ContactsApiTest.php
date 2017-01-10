@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
+use App\Contact;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class ContactsApiTest extends TestCase
 {
@@ -19,13 +20,17 @@ class ContactsApiTest extends TestCase
             'source' => 'sms'
         ]);
 
-        $this->seeInDatabase('contacts', [
-            'name' => 'DeRay',
-            'email' => 'deray@deray.com',
-            'phone' => '123-456-7890',
-            'campaign' => 'inauguration',
-            'source' => 'sms'
-        ]);
+        // Cannot use seeInDatabase because of encryption
+
+        $this->assertEquals(1, Contact::count());
+
+        $contact = Contact::first();
+
+        $this->assertEquals('DeRay', $contact->name);
+        $this->assertEquals('deray@deray.com', $contact->email);
+        $this->assertEquals('123-456-7890', $contact->phone);
+        $this->assertEquals('inauguration', $contact->campaign);
+        $this->assertEquals('sms', $contact->source);
     }
 
     /** @test */
