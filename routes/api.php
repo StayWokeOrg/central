@@ -18,8 +18,7 @@ Route::get('user', function (Request $request) {
 })->middleware('auth:api');
 
 if (! app()->environment('production')) {
-    Route::get('contacts', 'Api\ContactsController@index');
+    Route::get('contacts', 'Api\ContactsController@index')->middleware('auth:api');
 }
 
-
-Route::post('contacts', 'Api\ContactsController@store');
+Route::post('contacts', 'Api\ContactsController@store')->middleware('auth:api');
