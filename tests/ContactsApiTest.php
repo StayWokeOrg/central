@@ -17,7 +17,7 @@ class ContactsApiTest extends TestCase
             'name' => 'DeRay',
             'email' => 'deray@deray.com',
             'phone' => '123-456-7890',
-            'zip' => '02345'
+            'zip' => '02345',
             'campaign' => 'inauguration',
             'source' => 'sms',
         ]);
