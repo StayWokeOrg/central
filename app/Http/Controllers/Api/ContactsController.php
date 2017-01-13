@@ -27,6 +27,7 @@ class ContactsController extends Controller
             ->orWhere('phone', $request->input('phone'))->first();
 
         if ($contact) {
+            // handle duplicate; do we let them update?
             return response()->json([
                 'status' => 'success',
                 'data' => [
@@ -40,7 +41,7 @@ class ContactsController extends Controller
             'data' => [
                 'contact' => (new ContactTransformer(
                     Contact::create(
-                        $request->only(['name', 'email', 'phone', 'campaign', 'source'])
+                        $request->only(['name', 'email', 'phone', 'zip', 'campaign', 'source'])
                     )
                 ))->transform(),
             ]

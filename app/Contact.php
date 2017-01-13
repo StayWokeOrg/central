@@ -11,5 +11,5 @@ class Contact extends Model
 
     protected $encryptable = ['name', 'email', 'phone'];
 
-    protected $fillable = ['name', 'email', 'phone', 'campaign', 'source'];
+    protected $fillable = ['name', 'email', 'phone', 'zip', 'campaign', 'source'];
 }
