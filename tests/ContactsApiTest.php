@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 class ContactsApiTest extends TestCase
 {
     use DatabaseMigrations;
+    use WithoutMiddleware;
 
     /** @test */
     function it_stores_contacts()
@@ -16,8 +17,9 @@ class ContactsApiTest extends TestCase
             'name' => 'DeRay',
             'email' => 'deray@deray.com',
             'phone' => '123-456-7890',
+            'zip' => '02345',
             'campaign' => 'inauguration',
-            'source' => 'sms'
+            'source' => 'sms',
         ]);
 
         // Cannot use seeInDatabase because of encryption
@@ -31,6 +33,7 @@ class ContactsApiTest extends TestCase
         $this->assertEquals('123-456-7890', $contact->phone);
         $this->assertEquals('inauguration', $contact->campaign);
         $this->assertEquals('sms', $contact->source);
+        $this->assertEquals('02345', $contact->zip);
     }
 
     /** @test */
@@ -40,8 +43,9 @@ class ContactsApiTest extends TestCase
             'name' => 'DeRay',
             'email' => 'deray@deray.com',
             'phone' => '123-456-7890',
+            'zip' => '02345',
             'campaign' => 'inauguration',
-            'source' => 'sms'
+            'source' => 'sms',
         ]);
 
         $this->seeJsonStructure([
@@ -54,6 +58,7 @@ class ContactsApiTest extends TestCase
                     'phone',
                     'campaign',
                     'source',
+                    'zip',
                     'created_at',
                     'updated_at'
                 ]

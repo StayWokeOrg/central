@@ -18,6 +18,7 @@ class Contact
             'name' => $this->contact->name,
             'email' => $this->contact->email,
             'phone' => $this->contact->phone,
+            'zip' => $this->contact->zip,
             'campaign' => $this->contact->campaign,
             'source' => $this->contact->source,
             'created_at' => $this->contact->created_at->toIso8601String(),

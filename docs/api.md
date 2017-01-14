@@ -1,4 +1,4 @@
-# Central API v0.2
+# Central API v0.3
 
 ### Resources
 
@@ -25,6 +25,7 @@ POST /api/contacts
     'name': 'DeRay',
     'email': 'deray@deray.com',
     'phone': '123-456-7890',
+    'zip': '02345',
     'campaign': 'inauguration',
     'source': 'sms'
 ]
@@ -41,6 +42,7 @@ POST /api/contacts
       "name": "DeRay",
       "email": "deray@deray.com",
       "phone": "123-456-7890",
+      "zip": "02345",
       "campaign": "inauguration",
       "source": "sms",
       "created_at": "2017-01-10T05:43:19+0000",
