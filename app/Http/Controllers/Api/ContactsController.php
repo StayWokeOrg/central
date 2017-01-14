@@ -23,19 +23,6 @@ class ContactsController extends Controller
 
     public function store(Request $request)
     {
-        $contact = Contact::where('email', $request->input('email'))
-            ->orWhere('phone', $request->input('phone'))->first();
-
-        if ($contact) {
-            // handle duplicate; do we let them update?
-            return response()->json([
-                'status' => 'success',
-                'data' => [
-                    'contact' => (new ContactTransformer($contact))->transform(),
-                ]
-            ]);
-        }
-
         return response()->json([
             'status' => 'success',
             'data' => [

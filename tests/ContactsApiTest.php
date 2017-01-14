@@ -10,6 +10,14 @@ class ContactsApiTest extends TestCase
     use DatabaseMigrations;
     use WithoutMiddleware;
 
+    // Cannot use seeInDatabase because of encryption
+    private function seeinModel($model, $array)
+    {
+        foreach ($array as $key => $value) {
+            $this->assertEquals($value, $model->$key);
+        }
+    }
+
     /** @test */
     function it_stores_contacts()
     {
@@ -22,18 +30,15 @@ class ContactsApiTest extends TestCase
             'source' => 'sms',
         ]);
 
-        // Cannot use seeInDatabase because of encryption
-
         $this->assertEquals(1, Contact::count());
-
-        $contact = Contact::first();
-
-        $this->assertEquals('DeRay', $contact->name);
-        $this->assertEquals('deray@deray.com', $contact->email);
-        $this->assertEquals('123-456-7890', $contact->phone);
-        $this->assertEquals('inauguration', $contact->campaign);
-        $this->assertEquals('sms', $contact->source);
-        $this->assertEquals('02345', $contact->zip);
+        $this->seeInModel(Contact::first(), [
+            'name' => 'DeRay',
+            'email' => 'deray@deray.com',
+            'phone' => '123-456-7890',
+            'campaign' => 'inauguration',
+            'source' => 'sms',
+            'zip' => '02345',
+        ]);
     }
 
     /** @test */
@@ -67,12 +72,5 @@ class ContactsApiTest extends TestCase
 
         $this->seeJson(['status' => 'success']);
         $this->seeJson(['name' => 'DeRay']);
-    }
-
-    /** @test */
-    function duplicate_contacts_are_updated_not_duplicated()
-    {
-        $this->markTestIncomplete();
-        // @todo: How do we handle multiple people with the same email/phone?
     }
 }
