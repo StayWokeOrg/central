@@ -29,6 +29,7 @@ $factory->define(App\Contact::class, function (Faker\Generator $faker) {
         'phone' => $faker->phoneNumber,
         'zip' => $faker->postcode,
         'campaign' => $faker->userName,
+        'topics' => [$faker->sentence, $faker->sentence],
         'source' => $faker->tld,
     ];
 });

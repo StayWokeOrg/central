@@ -27,6 +27,10 @@ POST /api/contacts
     'phone': '123-456-7890',
     'zip': '02345',
     'campaign': 'inauguration',
+    'topics': [
+      'Big Data',
+      'Something Else'
+    ],
     'source': 'sms'
 ]
 ```
@@ -45,6 +49,10 @@ POST /api/contacts
       "zip": "02345",
       "campaign": "inauguration",
       "source": "sms",
+      "topics": [
+        "Big Data",
+        "Something Else"
+      ],
       "created_at": "2017-01-10T05:43:19+0000",
       "updated_at": "2017-01-10T05:43:19+0000"
     }

@@ -27,6 +27,10 @@ class ContactsApiTest extends TestCase
             'phone' => '123-456-7890',
             'zip' => '02345',
             'campaign' => 'inauguration',
+            'topics' => [
+                'Big Data',
+                'Something Else'
+            ],
             'source' => 'sms',
         ]);
 
@@ -37,6 +41,10 @@ class ContactsApiTest extends TestCase
             'phone' => '123-456-7890',
             'campaign' => 'inauguration',
             'source' => 'sms',
+            'topics' => [
+                'Big Data',
+                'Something Else'
+            ],
             'zip' => '02345',
         ]);
     }
@@ -50,6 +58,10 @@ class ContactsApiTest extends TestCase
             'phone' => '123-456-7890',
             'zip' => '02345',
             'campaign' => 'inauguration',
+            'topics' => [
+                'Big Data',
+                'Something Else'
+            ],
             'source' => 'sms',
         ]);
 
@@ -64,6 +76,7 @@ class ContactsApiTest extends TestCase
                     'campaign',
                     'source',
                     'zip',
+                    'topics',
                     'created_at',
                     'updated_at'
                 ]

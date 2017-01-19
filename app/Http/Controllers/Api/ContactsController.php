@@ -28,7 +28,7 @@ class ContactsController extends Controller
             'data' => [
                 'contact' => (new ContactTransformer(
                     Contact::create(
-                        $request->only(['name', 'email', 'phone', 'zip', 'campaign', 'source'])
+                        $request->only(['name', 'email', 'phone', 'zip', 'campaign', 'source', 'topics'])
                     )
                 ))->transform(),
             ]
