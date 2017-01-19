@@ -21,4 +21,5 @@ if (! app()->environment('production')) {
     Route::get('contacts', 'Api\ContactsController@index');
 }
 
-Route::post('contacts', 'Api\ContactsController@store')->middleware('auth:api');
+Route::post('contacts', 'Api\ContactsController@store')/*
+    ->middleware('auth:api')*/;

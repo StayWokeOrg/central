@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
-    use EncryptsFields;
+    // use EncryptsFields;
 
-    protected $encryptable = ['name', 'email', 'phone'];
+    // protected $encryptable = ['name', 'email', 'phone'];
 
     protected $fillable = ['name', 'email', 'phone', 'zip', 'campaign', 'source'];
 }
