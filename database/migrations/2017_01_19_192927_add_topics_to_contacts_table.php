@@ -14,7 +14,7 @@ class AddTopicsToContactsTable extends Migration
     public function up()
     {
         Schema::table('contacts', function (Blueprint $table) {
-            $table->json('topics')->nullable();
+            $table->string('topics')->nullable();
         });
     }
 
