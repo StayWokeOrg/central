@@ -1,3 +1,4 @@
 FROM petecoop/laravel:onbuild
 
-CMD php artisan migrate && apache2-foreground
+# disable for now, going to manually handle migrates
+# CMD php artisan migrate && apache2-foreground
