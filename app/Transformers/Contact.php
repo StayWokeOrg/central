@@ -21,6 +21,7 @@ class Contact
             'zip' => $this->contact->zip,
             'campaign' => $this->contact->campaign,
             'source' => $this->contact->source,
+            'topics' => $this->contact->topics,
             'created_at' => $this->contact->created_at->toIso8601String(),
             'updated_at' => $this->contact->updated_at->toIso8601String(),
         ];
