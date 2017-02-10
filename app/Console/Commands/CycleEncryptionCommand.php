@@ -10,7 +10,13 @@ use Symfony\Component\Console\Helper\ProgressBar;
 class CycleEncryptionCommand extends KeyGenerateCommand
 {
 
-    public $classesWithEncryption = [
+    /**
+     * Lists the Eloquent Models that use encryption
+     * and implement the EncryptFields trait.
+     *
+     * @var array
+     */
+    public $modelsWithEncryption = [
         \App\Contact::class,
     ];
 
@@ -39,7 +45,12 @@ class CycleEncryptionCommand extends KeyGenerateCommand
     }
 
     /**
-     * Execute the console command.
+     * Execute the console command by cycling through the models
+     * listed in $modelsWithEncryption. To make sure that
+     * no data is lost, the changes are not committed
+     * until we know that no exceptions were raised
+     * in the process. The new key is then saved
+     * in the current environment file.
      *
      * @return mixed
      */
@@ -52,8 +63,8 @@ class CycleEncryptionCommand extends KeyGenerateCommand
 
         DB::beginTransaction();
         try {
-            foreach ($this->classesWithEncryption as $class) {
-                $this->cycleEncryption($class, $key, $oldKey);
+            foreach ($this->modelsWithEncryption as $class) {
+                $this->cycleEncryption($class);
             }
 
         } catch (\Exception $e) {
@@ -74,7 +85,13 @@ class CycleEncryptionCommand extends KeyGenerateCommand
     }
 
 
-    public function cycleEncryption($class, $key, $oldKey)
+    /**
+     * Rewrites all the encrypted fields to the database,
+     * using the newly defined application key.
+     *
+     * @param string $class
+     */
+    public function cycleEncryption($class)
     {
         if (!in_array(\App\EncryptsFields::class, class_uses($class))) {
             return;
@@ -86,7 +103,7 @@ class CycleEncryptionCommand extends KeyGenerateCommand
         $this->info("Re-encrypting {$class}");
         $progress->start();
 
-        $entries->each(function ($entry) use ($progress, $oldKey, $key) {
+        $entries->each(function ($entry) use ($progress) {
             foreach ($entry->encryptable as $field) {
                 $value = $entry->getAttribute($field);
                 $entry->setAttribute($field, $value);

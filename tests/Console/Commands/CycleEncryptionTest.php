@@ -14,7 +14,6 @@ class CycleEncryptionTest extends TestCase
         parent::__construct();
     }
 
-
     function test_it_sets_a_new_app_key()
     {
         $oldKey = config('app.key');
@@ -40,13 +39,10 @@ class CycleEncryptionTest extends TestCase
 
     function test_it_does_not_save_anything_when_an_exception_occurs()
     {
-
         // Need to find a way to assess the following:
         // DB::shouldReceive('beginTransaction')->once();
         // DB::shouldReceive('rollBack')->once();
         // DB::shouldNotReceive('commit');
-
-
     }
 
     function test_it_skips_when_a_model_does_not_use_encryption()
@@ -54,8 +50,6 @@ class CycleEncryptionTest extends TestCase
         $eloquentModel = new m\Mock(Illuminate\Database\Eloquent::class);
         $eloquentModel->shouldNotReceive('every', 'getArgument', 'setArgument');
 
-        (new CycleEncryptionCommand())->cycleEncryption(get_class($eloquentModel), 'key', 'oldKey');
-
-
+        (new CycleEncryptionCommand())->cycleEncryption(get_class($eloquentModel));
     }
 }
