@@ -19,6 +19,14 @@ Central repository for all contact information gathered from various apps.
 * A [supported relational database](http://laravel.com/docs/5.3/database#introduction) and corresponding PHP extension
 * [Composer](https://getcomposer.org/download/)
 
+For example, to install PHP with PostgreSQL extensions using
+[Homebrew](http://brew.sh/):
+
+```bash
+brew install homebrew/php/php71
+brew install homebrew/php/php71-pdo-pgsql
+```
+
 ### Installation
 
 1. (Optionally) [Fork this repository](https://help.github.com/articles/fork-a-repo/)
@@ -33,8 +41,9 @@ Central repository for all contact information gathered from various apps.
 6. Configure a web server, such as the [built-in PHP web server](http://php.net/manual/en/features.commandline.webserver.php), to use the `public` directory as the document root.
 
     ```bash
+    php artisan key:generate
     php -S localhost:8080 -t public
     ```
 
-     Or use [Laravel Valet](https://laravel.com/docs/5.3/valet)
+    Or use [Laravel Valet](https://laravel.com/docs/5.3/valet)
 7. Run tests with `./vendor/bin/phpunit`.
